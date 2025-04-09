@@ -1,4 +1,4 @@
-// ©2024, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited.
+// ©2025, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited.
 
 using System.Net;
 using pic.ApiService;
@@ -13,7 +13,9 @@ builder.AddServiceDefaults();
 builder.Services.AddProblemDetails();
 
 // Bind components from appsettings.json
-var components = builder.Configuration.GetSection("Components").Get<List<CislComponent>>();
+var components = builder.Configuration
+                        .GetSection("Components")
+                        .Get<List<CislComponent>>();
 
 var app = builder.Build();
 
@@ -23,28 +25,28 @@ app.UseExceptionHandler();
 app.MapGet("/cislcomponents",
            async () =>
                await Task.WhenAll(components!.Select(async component =>
-                                                    {
-                                                        string status;
+                                                     {
+                                                         string status;
 
-                                                        try
-                                                        {
-                                                            using HttpClient client = new();
-                                                            var response = await client.GetAsync(component.Url).WaitAsync(TimeSpan.FromSeconds(3));
-                                                            status = HttpStatusCode.OK == response.StatusCode ? "Up" : "Down";
-                                                        }
-                                                        catch (TimeoutException ex)
-                                                        {
-                                                            status = "Timeout";
-                                                            app.Logger.LogError(ex, ex.Message);
-                                                        }
-                                                        catch (Exception ex)
-                                                        {
-                                                            status = "Unknown";
-                                                            app.Logger.LogError(ex, ex.Message);
-                                                        }
+                                                         try
+                                                         {
+                                                             using HttpClient client = new();
+                                                             var response = await client.GetAsync(component.Url).WaitAsync(TimeSpan.FromSeconds(3));
+                                                             status = HttpStatusCode.OK == response.StatusCode ? "Up" : "Down";
+                                                         }
+                                                         catch (TimeoutException ex)
+                                                         {
+                                                             status = "Timeout";
+                                                             app.Logger.LogError(ex, ex.Message);
+                                                         }
+                                                         catch (Exception ex)
+                                                         {
+                                                             status = "Unknown";
+                                                             app.Logger.LogError(ex, ex.Message);
+                                                         }
 
-                                                        return component with { Status = status };
-                                                    }))
+                                                         return component with { Status = status };
+                                                     }))
           );
 
 app.MapDefaultEndpoints();

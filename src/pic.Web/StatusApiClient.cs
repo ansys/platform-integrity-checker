@@ -1,4 +1,4 @@
-// ©2024, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited.
+// ©2025, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited.
 
 namespace pic.Web;
 

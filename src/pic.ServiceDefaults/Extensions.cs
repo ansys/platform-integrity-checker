@@ -1,4 +1,4 @@
-// ©2024, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited.
+// ©2025, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited.
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
