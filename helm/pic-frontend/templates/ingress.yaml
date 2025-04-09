@@ -1,0 +1,23 @@
+apiVersion: {{ .Values.traefikApiVersion }}
+kind: IngressRoute
+metadata:
+  name: {{ include "pic-frontend.fullname" . }}
+  labels:
+    {{- include "pic-frontend.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.domain }}`)
+      services:
+        - kind: Service
+          name: {{ include "pic-frontend.fullname" . }}
+          port: http
+          responseForwarding:
+            flushInterval: 1ms
+          scheme: http
+      middlewares:
+        - name: oauth2-proxy-redirect
+  tls:
+  {{- toYaml .Values.tls | nindent 4 }}

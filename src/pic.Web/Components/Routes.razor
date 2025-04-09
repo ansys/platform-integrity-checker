@@ -1,0 +1,8 @@
+﻿<!-- ©2024, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited. -->
+
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+</Router>

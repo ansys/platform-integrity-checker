@@ -1,0 +1,9 @@
+**/bin/
+**/obj/
+
+compose.yaml
+**/Dockerfile
+
+# IDE
+.idea/
+.vscode/

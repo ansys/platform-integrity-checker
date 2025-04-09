@@ -1,0 +1,51 @@
+﻿<!-- ©2024, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited. -->
+
+@page "/status"
+@attribute [StreamRendering(true)]
+@attribute [OutputCache(Duration = 5)]
+
+@inject StatusApiClient StatusApi
+
+<PageTitle>Status</PageTitle>
+
+<h1>Status</h1>
+
+<p>This component provide status informations about CISL components.</p>
+
+@if (components == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Component</th>
+                <th>URL</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var component in components)
+            {
+                <tr>
+                    <td>@component.Name</td>
+                    <td>@component.Url</td>
+                    <td>@component.Description</td>
+                    <td>@component.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private cislComponent[]? components;
+
+    protected override async Task OnInitializedAsync()
+    {
+        components = await StatusApi.GetStatusAsync();
+    }
+}
