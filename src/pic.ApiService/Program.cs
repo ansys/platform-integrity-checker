@@ -1,16 +1,8 @@
 // ©2024, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using pic.ApiService;
+using pic.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +13,7 @@ builder.AddServiceDefaults();
 builder.Services.AddProblemDetails();
 
 // Bind components from appsettings.json
-var components = builder.Configuration.GetSection("Components").Get<List<cislComponent>>();
+var components = builder.Configuration.GetSection("Components").Get<List<CislComponent>>();
 
 var app = builder.Build();
 
@@ -60,6 +52,3 @@ app.MapDefaultEndpoints();
 app.Logger.LogInformation("Silencing probes {SilentProbes}", builder.Configuration.GetValue<bool>("SilentProbes"));
 
 app.Run();
-
-// Define the record for components
-record cislComponent(string Name, string? Url, string? Description, string Status = "Unknown");

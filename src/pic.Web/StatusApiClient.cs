@@ -1,10 +1,5 @@
 // ©2024, ANSYS Inc. Unauthorized use, distribution or duplication is prohibited.
 
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-
 namespace pic.Web;
 
 public class StatusApiClient
@@ -14,11 +9,11 @@ public class StatusApiClient
     public StatusApiClient(HttpClient httpClient) => 
         _httpClient = httpClient;
     
-    public async Task<cislComponent[]> GetStatusAsync()
+    public async Task<CislComponent[]> GetStatusAsync()
     {
-        List<cislComponent>? components = null;
+        List<CislComponent>? components = null;
 
-        await foreach (var component in _httpClient.GetFromJsonAsAsyncEnumerable<cislComponent>("/cislComponents"))
+        await foreach (var component in _httpClient.GetFromJsonAsAsyncEnumerable<CislComponent>("/cislComponents"))
         {
             if (component is not null)
             {
@@ -31,4 +26,4 @@ public class StatusApiClient
     }
 }
 
-public record cislComponent (string Name, string? Url, string? Description, string Status);
+public record CislComponent (string Name, string? Url, string? Description, string Status);

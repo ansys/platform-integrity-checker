@@ -12,7 +12,7 @@
 
 <p>This component provide status informations about CISL components.</p>
 
-@if (components == null)
+@if (_components == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -28,7 +28,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var component in components)
+            @foreach (var component in _components)
             {
                 <tr>
                     <td>@component.Name</td>
@@ -42,10 +42,10 @@ else
 }
 
 @code {
-    private cislComponent[]? components;
+    private CislComponent[]? _components;
 
     protected override async Task OnInitializedAsync()
     {
-        components = await StatusApi.GetStatusAsync();
+        _components = await StatusApi.GetStatusAsync();
     }
 }
