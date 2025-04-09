@@ -6,20 +6,15 @@ using pic.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add service defaults & Aspire components.
 builder.AddServiceDefaults();
-
-// Add services to the container.
 builder.Services.AddProblemDetails();
 
-// Bind components from appsettings.json
 var components = builder.Configuration
                         .GetSection("Components")
                         .Get<List<Component>>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 app.UseExceptionHandler();
 
 app.MapGet("/components",
@@ -51,6 +46,7 @@ app.MapGet("/components",
 
 app.MapDefaultEndpoints();
 
-app.Logger.LogInformation("Silencing probes {SilentProbes}", builder.Configuration.GetValue<bool>("SilentProbes"));
+app.Logger.LogInformation("Silencing probes {SilentProbes}",
+                          builder.Configuration.GetValue<bool>("SilentProbes"));
 
 app.Run();

@@ -44,7 +44,7 @@ services:
 
   aspire-dashboard:
     <<: *default-glue
-    image: mcr.microsoft.com/dotnet/aspire-dashboard:8.0
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:9.1.0
     environment:
       DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS: true
     ports:
