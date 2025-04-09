@@ -1,5 +1,0 @@
-Dear {{ .Values.domain }} users,
-
-{{ .Values.domain }} has been deployed at https://{{ .Values.domain }}
-
-Regards!

@@ -1,6 +1,0 @@
-apiVersion: v2
-name: pic-frontend
-description: A Helm chart for Platform Integrity Checker frontend
-type: application
-version: 1.2.0
-appVersion: "latest"
