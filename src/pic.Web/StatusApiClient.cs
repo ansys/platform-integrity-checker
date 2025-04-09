@@ -9,11 +9,11 @@ public class StatusApiClient
     public StatusApiClient(HttpClient httpClient) => 
         _httpClient = httpClient;
     
-    public async Task<CislComponent[]> GetStatusAsync()
+    public async Task<Component[]> GetStatusAsync()
     {
-        List<CislComponent>? components = null;
+        List<Component>? components = null;
 
-        await foreach (var component in _httpClient.GetFromJsonAsAsyncEnumerable<CislComponent>("/cislComponents"))
+        await foreach (var component in _httpClient.GetFromJsonAsAsyncEnumerable<Component>("/components"))
         {
             if (component is not null)
             {
@@ -26,4 +26,4 @@ public class StatusApiClient
     }
 }
 
-public record CislComponent (string Name, string? Url, string? Description, string Status);
+public record Component (string Name, string? Url, string? Description, string Status);

@@ -15,14 +15,14 @@ builder.Services.AddProblemDetails();
 // Bind components from appsettings.json
 var components = builder.Configuration
                         .GetSection("Components")
-                        .Get<List<CislComponent>>();
+                        .Get<List<Component>>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseExceptionHandler();
 
-app.MapGet("/cislcomponents",
+app.MapGet("/components",
            async () =>
                await Task.WhenAll(components!.Select(async component =>
                                                      {
