@@ -1,0 +1,54 @@
+x-app: &default-glue
+  networks:
+    - pic-nw
+  extra_hosts:
+    - 'host.docker.internal:host-gateway'
+  restart: unless-stopped
+
+services:
+
+  pic-backend:
+    <<: *default-glue
+    image: pic/backend:${VERSION:-latest}
+    build:
+      context: .
+      dockerfile: pic.ApiService/Dockerfile
+    environment:
+      OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES: true
+      OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES: true
+      OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY: in_memory
+      ASPNETCORE_FORWARDEDHEADERS_ENABLED: true
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://aspire-dashboard:18889
+      OTEL_SERVICE_NAME: pic-backend
+    ports:
+    - 10000:8080
+    - 10001:8443
+
+  pic-frontend:
+    <<: *default-glue
+    image: pic/frontend:${VERSION:-latest}
+    build:
+      context: .
+      dockerfile: pic.Web/Dockerfile
+    environment:
+      OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES: true
+      OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES: true
+      OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY: in_memory
+      ASPNETCORE_FORWARDEDHEADERS_ENABLED: true
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://aspire-dashboard:18889
+      OTEL_SERVICE_NAME: pic-frontend
+      services__apiservice__http__0: "http://pic-backend:8080"
+    ports:
+    - 5000:8080
+    - 10003:8443
+
+  aspire-dashboard:
+    <<: *default-glue
+    image: mcr.microsoft.com/dotnet/aspire-dashboard:8.0
+    environment:
+      DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS: true
+    ports:
+    - 18888:18888
+
+networks:
+  pic-nw:

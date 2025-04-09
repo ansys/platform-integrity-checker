@@ -1,0 +1,6 @@
+apiVersion: v2
+name: pic-backend
+description: A Helm chart for  Platform Integrity Checker backend
+type: application
+version: 1.1.0
+appVersion: "latest"

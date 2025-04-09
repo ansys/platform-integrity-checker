@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>59a9dd66-4c0f-4a45-9512-d8d9203a0f87</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\pic.ApiService\pic.ApiService.csproj" />
+    <ProjectReference Include="..\pic.Web\pic.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Bazel hack -->
+    <Compile Remove="*.ProjectMetadata.g.cs" />
+  </ItemGroup>
+
+</Project>

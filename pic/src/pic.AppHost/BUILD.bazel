@@ -1,0 +1,39 @@
+load("//:defs.bzl", "csharp_binary", "file_version_attributes")
+load("//tools/build/rules/resources:ans_release_info.bzl", "ansys_copyright_attributes")
+
+PIC_VERSION = "1.0.0"
+
+attributes = ansys_copyright_attributes | file_version_attributes(PIC_VERSION)
+
+csharp_binary(
+    name = "pic.AppHost",
+    srcs = [
+        "Program.cs",
+        # SHould be auto-generated leveraging genrule instead
+        "pic_ApiService.ProjectMetadata.g.cs",
+        "pic_Web.ProjectMetadata.g.cs",
+        # ":project_metadata",
+    ],
+    attributes = attributes,
+    nullable = "enable",
+    project_sdk = "web",
+    target_frameworks = ["net8.0"],
+    targeting_packs = [
+        "@paket.main//microsoft.aspnetcore.app.ref",
+        "@paket.main//microsoft.netcore.app.ref",
+    ],
+    visibility = [
+        "//ansys/pic:__subpackages__",
+    ],
+    deps = [
+        "//ansys/pic/src/pic.ApiService",
+        # "//ansys/pic/src/pic.Web",
+        "@paket.main//aspire.hosting",
+        "@paket.main//aspire.hosting.apphost",
+    ],
+)
+
+# genrule(
+#     name = "project_metadata",
+#     cmd =
+# )
