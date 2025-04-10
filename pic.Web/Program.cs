@@ -41,4 +41,7 @@ app.MapRazorComponents<App>()
 
 app.MapDefaultEndpoints();
 
+app.Logger.LogInformation("Silencing probes {SilentProbes}",
+                          builder.Configuration.GetValue<bool>("SilentProbes"));
+
 app.Run();

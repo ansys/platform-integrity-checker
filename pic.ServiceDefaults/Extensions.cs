@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
@@ -58,11 +60,15 @@ public static class Extensions
             })
             .WithTracing(tracing =>
             {
-                tracing.AddSource(builder.Environment.ApplicationName)
-                    .AddAspNetCoreInstrumentation()
-                    // Uncomment the following line to enable gRPC instrumentation (requires the OpenTelemetry.Instrumentation.GrpcNetClient package)
-                    //.AddGrpcClientInstrumentation()
-                    .AddHttpClientInstrumentation();
+                Func<HttpContext, bool> filter = builder.Configuration.GetValue<bool>("SilentProbes")
+                                                     ? context => !context.Request.Path.Equals("/health") &&
+                                                                  !context.Request.Path.Equals("/alive")
+                                                     : _ => true;
+
+
+                tracing.AddAspNetCoreInstrumentation(o=> o.Filter = filter)
+                       //.AddGrpcClientInstrumentation()
+                       .AddHttpClientInstrumentation();
             });
 
         builder.AddOpenTelemetryExporters();
