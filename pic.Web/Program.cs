@@ -1,3 +1,5 @@
+// Copyright (C) 2025 ANSYS, Inc. and/or its affiliates.
+
 using pic.Web;
 using pic.Web.Components;
 

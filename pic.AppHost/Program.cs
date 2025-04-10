@@ -1,3 +1,5 @@
+// Copyright (C) 2025 ANSYS, Inc. and/or its affiliates.
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var apiService = builder.AddProject<Projects.pic_ApiService>("apiservice");

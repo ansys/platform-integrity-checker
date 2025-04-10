@@ -1,3 +1,5 @@
+// Copyright (C) 2025 ANSYS, Inc. and/or its affiliates.
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire client integrations.

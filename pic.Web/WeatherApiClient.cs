@@ -1,3 +1,5 @@
+// Copyright (C) 2025 ANSYS, Inc. and/or its affiliates.
+
 namespace pic.Web;
 
 public class WeatherApiClient(HttpClient httpClient)
