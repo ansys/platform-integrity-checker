@@ -6,7 +6,4 @@
 
 ## Individual Contributors
 
-[Mathilde Gallouet](https://github.com/mgalloue)
-* 
-* 
-
+* [Mathilde Gallouet](https://github.com/mgalloue)
