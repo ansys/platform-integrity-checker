@@ -39,7 +39,7 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapDefaultEndpoints();
 
-app.Logger.LogInformation("Silencing probes {SilentProbes}", 
+app.Logger.LogInformation("Silencing probes {SilentProbes}",
                           builder.Configuration.GetValue<bool>("SilentProbes"));
 
 app.Run();

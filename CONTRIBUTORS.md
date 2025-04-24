@@ -2,10 +2,10 @@
 
 ## Project Lead
 
-* 
+*
 
 ## Individual Contributors
 
-* 
-* 
+*
+*
 
