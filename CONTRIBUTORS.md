@@ -6,6 +6,7 @@
 
 ## Individual Contributors
 
+[Mathilde Gallouet](https://github.com/mgalloue)
 * 
 * 
 
