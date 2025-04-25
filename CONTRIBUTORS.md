@@ -2,8 +2,8 @@
 
 ## Project Lead
 
-* [Romain Vasseur](https://github.com/RVR06)
+* [Mathilde Gallouet](https://github.com/mgalloue)
 
 ## Individual Contributors
 
-* [Mathilde Gallouet](https://github.com/mgalloue)
+* [Romain Vasseur](https://github.com/RVR06)
