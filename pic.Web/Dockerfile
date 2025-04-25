@@ -21,12 +21,12 @@ WORKDIR /app
 COPY --from=build /app/publish .
 EXPOSE 8080
 
-LABEL org.opencontainers.image.authors="Ansys PSI team <PlatformServicesandIntegration@ansys.com>"
-LABEL org.opencontainers.image.vendor="ANSYS Inc."
-LABEL org.opencontainers.image.title="pic frontend"
-LABEL org.opencontainers.image.description="Plateform Integrity Checker frontend"
-LABEL org.opencontainers.image.created=${CREATED_AT}
-LABEL org.opencontainers.image.revision=${REVISION}
-LABEL org.opencontainers.image.version=${VERSION}
+LABEL org.opencontainers.image.authors="Ansys PSI team" \
+    org.opencontainers.image.vendor="ANSYS Inc." \
+    org.opencontainers.image.title="pic frontend" \
+    org.opencontainers.image.description="Plateform Integrity Checker frontend" \
+    org.opencontainers.image.created=${CREATED_AT} \
+    org.opencontainers.image.revision=${REVISION} \
+    org.opencontainers.image.version=${VERSION}
 
 ENTRYPOINT ["./pic.Web"]
