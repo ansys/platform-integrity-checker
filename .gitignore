@@ -63,7 +63,3 @@ paket-files/
 
 # Secrets
 **/*.lic
-
-# Ignore Python virtual environment
-venv
-.venv
