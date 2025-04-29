@@ -1,0 +1,9 @@
+.idea/
+.github/
+.vscode/
+
+**/bin/
+**/obj/
+
+compose.yaml
+**/Dockerfile

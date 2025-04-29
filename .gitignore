@@ -1,0 +1,65 @@
+# Visual Studio 2015 and VS Code cache/options directories
+.vs/
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual studio code local settings
+.vscode/
+*.code-workspace
+
+# Node.js Tools for Visual Studio
+.ntvs_analysis.dat
+**/node_modules/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Bazel build results
+/bazel-*
+# Bazel user config
+user.bazelrc
+
+#rust-analyzer
+rust-project.json
+
+# useless directory due to our setup.py at the root of the repository
+UNKNOWN.egg-info/
+
+# paket
+paket-files/
+
+# C#
+**/obj
+
+# Structurizr
+**/.structurizr/
+
+# MacOS Finder file
+.DS_Store
+
+#.terraform
+**/.terraform/
+# Binaries
+*.tgz
+*.tar.gz
+*.zip
+*.tar.xz
+*.7z
+*.rar
+*.iso
+*.dmg
+*.jar
+*.gz
+
+.hugo_build.lock
+
+# C#
+**/bin/
+**/obj/
+
+# Secrets
+**/*.lic
