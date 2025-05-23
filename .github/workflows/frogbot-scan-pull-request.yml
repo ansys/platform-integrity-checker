@@ -45,5 +45,5 @@ jobs:
         # Insert to oidc-provider-name the 'Provider Name' defined in the OIDC integration configured in the JPD
         # OIDC identiy mappings are defined in JFrog Platform administration -> General Management -> Manage Integrations
         with:
-          oidc-provider-name: "github-actions-oidc"
+          oidc-provider-name: "github-ansys"
           oidc-audience: GitHub ansys-internal CI/CD Pipelines
