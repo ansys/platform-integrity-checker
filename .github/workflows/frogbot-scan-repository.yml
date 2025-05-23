@@ -13,7 +13,9 @@ permissions:
 jobs:
   scan-repository:
     runs-on: ubuntu-latest-4-cores
-    # container:
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:9.0
+
     #   # Official .NET SDK image with python3-virtualenv package installed. One-time manual creation.
     #   image: azuekubeacr03.azurecr.io/dotnet/sdk-python3-virtualenv:9.0.201-noble-amd64
     strategy:
