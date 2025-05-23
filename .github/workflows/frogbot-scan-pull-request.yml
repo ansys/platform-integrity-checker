@@ -10,7 +10,8 @@ permissions:
 jobs:
   scan-pull-request:
     runs-on: ubuntu-latest-4-cores
-    # container:
+    container:
+      image: mcr.microsoft.com/dotnet/sdk:9.0
     #   # Official .NET SDK image with python3-virtualenv package installed. One-time manual creation.
     #   image: azuekubeacr03.azurecr.io/dotnet/sdk-python3-virtualenv:9.0.201-noble-amd64
     # A pull request needs to be approved before Frogbot scans it. Any GitHub user who is associated with the
@@ -45,5 +46,5 @@ jobs:
         # Insert to oidc-provider-name the 'Provider Name' defined in the OIDC integration configured in the JPD
         # OIDC identiy mappings are defined in JFrog Platform administration -> General Management -> Manage Integrations
         with:
-          oidc-provider-name: "github-actions-oidc"
+          oidc-provider-name: "github-ansys"
           oidc-audience: GitHub ansys-internal CI/CD Pipelines
