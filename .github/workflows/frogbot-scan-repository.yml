@@ -1,31 +1,35 @@
-name: "Frogbot Security Scan Workflow"
-
-on:
+name: "Frogbot Scan Repository"
+on: 
   pull_request_target: 
     # Triggers scan-pr flow for every opened/updated pull request
     types: [opened, synchronize] 
   push: 
     # Triggers scan-repo flow for every push to the specified branches
     branches:
-      - rbathiya/frogbot
+      - main
   schedule:
     # The repository will be scanned every Monday at 00:00 GMT (Can be change according to your needs).
     - cron: "0 0 * * 1"
   workflow_dispatch: # The repository will be scanned on demand
-
+  
 permissions:
   contents: write
   pull-requests: write
   security-events: write
   # [Mandatory If using OIDC authentication protocol instead of JF_ACCESS_TOKEN]
   id-token: write
+  
 jobs:
   scan-repository:
-    runs-on: public-ubuntu-latest-8-cores
+    runs-on: ubuntu-latest-4-cores
+    # container:
+    #   # Official .NET SDK image with python3-virtualenv package installed. One-time manual creation.
+    #   image: azuekubeacr03.azurecr.io/dotnet/sdk-python3-virtualenv:9.0.201-noble-amd64
     strategy:
       matrix:
+        # The repository scanning will be triggered periodically on the following branches.
         branch: ["main"]
-    steps:        
+    steps:
       - uses: jfrog/frogbot@v2
         env:
           # [Mandatory]
@@ -58,5 +62,3 @@ jobs:
         with:
           oidc-provider-name: "github-actions-oidc"
           oidc-audience: GitHub ansys-internal CI/CD Pipelines
-
-         
