@@ -10,7 +10,7 @@ Platform Integrity Checker (PIC) allows to assess deployment integrity:
 ```sh
 export CREATED_AT=$(date --rfc-3339=seconds)
 export REVISION=$(git log -1 | head -1 | cut -d ' ' -f 2)
-export VERSION='1.0.0'
+export VERSION='1.0.1'
 
 docker compose \
     build \
@@ -22,7 +22,7 @@ docker compose \
 ## Usage
 
 ```sh
-export VERSION='1.0.0'
+export VERSION='1.0.1'
 
 docker compose up
 ```
