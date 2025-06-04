@@ -7,5 +7,5 @@ see https://github.com/ansys-internal/ci-templates/pull/176
 - PoC to run Frogbot on github.com/ansys organization repositories
 - Connects to https://ansyscpp.jfrog.io SaaS instance - accessible from GitHub-hosted runners. This SaaS intance is temporary.
 - TODO: connect to https://artifactory.ansys.com - requires self-hosted runners with internal network access. Ideally through runner scale sets hosted on Ansys-maintained k8s.
-- TODO: run in container with verified Frogbot execution environment. Need package manager executeables.
+- TODO: run in container with verified Frogbot execution environment. Need package manager executeables.  Which image? Where to host?
 - TODO: verify Frogbot support and performance with Docker, Docker compose.
